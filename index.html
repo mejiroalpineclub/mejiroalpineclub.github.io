@@ -3,10 +3,162 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>目白アルパインクラブ｜歩くゴミ箱</title>
+  <title>目白アルパインクラブ｜歩くゴミ箱（協賛企業募集）</title>
+
+  <style>
+    :root{
+      --bg:#0b1a12;
+      --card:#0f2419;
+      --text:#ecf7ef;
+      --sub:#b8d9c4;
+      --line:rgba(236,247,239,.14);
+      --accent:#1e8f4c;
+      --accent2:#27b35d;
+      --radius:18px;
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:"Noto Sans JP",sans-serif;
+      background:linear-gradient(180deg,var(--bg),#050b08);
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    .wrap{max-width:var(--max);margin:auto;padding:20px;}
+
+    header{
+      background:#07110c;
+      padding:15px 0;
+      border-bottom:1px solid var(--line);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .brand img{
+      width:80px;
+      height:auto;
+      border-radius:10px;
+    }
+
+    h1{
+      font-size:32px;
+      margin:20px 0 10px;
+    }
+
+    h2{margin-top:40px;}
+
+    .cta{
+      display:inline-block;
+      padding:12px 20px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#041109;
+      font-weight:bold;
+      text-decoration:none;
+      margin-top:20px;
+    }
+
+    section{
+      margin-top:40px;
+    }
+
+    .card{
+      background:var(--card);
+      padding:20px;
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      margin-top:15px;
+    }
+
+    iframe{
+      width:100%;
+      height:900px;
+      border:none;
+      background:white;
+      border-radius:var(--radius);
+    }
+
+    footer{
+      margin-top:60px;
+      padding:30px 0;
+      border-top:1px solid var(--line);
+      font-size:13px;
+      color:var(--sub);
+    }
+
+    @media(max-width:600px){
+      h1{font-size:24px;}
+      .brand img{width:60px;}
+    }
+  </style>
 </head>
+
 <body>
-  <h1>目白アルパインクラブ</h1>
-  <p>社会貢献プロジェクト「歩くゴミ箱」第1期協賛企業様募集中</p>
+
+<header>
+  <div class="wrap brand">
+    <img src="images/logo.jpg" alt="目白アルパインクラブ ロゴ">
+    <div>
+      <strong>目白アルパインクラブ</strong><br>
+      社会貢献プロジェクト「歩くゴミ箱」
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<h1>山をきれいに。子どもにごはんを。<br>背中で、企業の想いを届けます。</h1>
+
+<a href="#contact" class="cta">協賛の相談をする</a>
+
+<section>
+<h2>プロジェクト概要</h2>
+<div class="card">
+私たちはゴミ箱を背負って登山を行い、山道に落ちているゴミを回収します。<br>
+協賛企業様のロゴを背面に掲示し、活動記録をSNS（Instagram / TikTok）で発信します。<br>
+協賛金は経費を除き、子ども食堂等へ寄付いたします。
+</div>
+</section>
+
+<section>
+<h2>協賛プラン</h2>
+<div class="card">
+<b>創設パートナー（限定3社）｜5万円〜</b><br>
+背面ロゴ最大掲示・サイト上部掲載・3ヶ月継続掲示・寄付報告明記
+</div>
+
+<div class="card">
+<b>サポートパートナー｜3万円</b><br>
+背面ロゴ掲示・サイト掲載・活動報告共有
+</div>
+
+<div class="card">
+<b>応援パートナー｜1万円</b><br>
+ロゴ小掲示・活動報告共有
+</div>
+</section>
+
+<section id="contact">
+<h2>お問い合わせ</h2>
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexW4jgSRHGK_Gvz4ppsRODYqGJ9b1FyFqgVDzVpCxI2eBnNQ/viewform?embedded=true">
+読み込んでいます…
+</iframe>
+
+</section>
+
+<footer>
+目白アルパインクラブ © 2026<br>
+Instagram / TikTok は準備中
+</footer>
+
+</div>
 </body>
 </html>
