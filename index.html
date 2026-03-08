@@ -1,164 +1,830 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>目白アルパインクラブ｜歩くゴミ箱（協賛企業募集）</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>目白アルパインクラブ | 歩くゴミ箱</title>
   <style>
-    :root{
-      --bg:#0b1a12;
-      --card:#0f2419;
-      --text:#ecf7ef;
-      --sub:#b8d9c4;
-      --line:rgba(236,247,239,.14);
-      --accent:#1e8f4c;
-      --accent2:#27b35d;
-      --radius:18px;
-      --max:1100px;
+    :root {
+      --green: #1f7a47;
+      --green-dark: #145333;
+      --green-soft: #e9f4ed;
+      --text: #111111;
+      --muted: #5f6662;
+      --line: #e8e8e8;
+      --bg: #ffffff;
+      --max: 1180px;
+      --radius: 24px;
     }
 
-    *{box-sizing:border-box;}
-    body{
-      margin:0;
-      font-family:"Noto Sans JP",sans-serif;
-      background:linear-gradient(180deg,var(--bg),#050b08);
-      color:var(--text);
-      line-height:1.7;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
     }
 
-    .wrap{max-width:var(--max);margin:auto;padding:20px;}
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
-    header{
-      background:#07110c;
-      padding:15px 0;
-      border-bottom:1px solid var(--line);
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:15px;
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
     }
 
-    .brand img{
-      width:80px;
-      height:auto;
-      border-radius:10px;
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
 
-    h1{
-      font-size:32px;
-      margin:20px 0 10px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
     }
 
-    h2{margin-top:40px;}
-
-    .cta{
-      display:inline-block;
-      padding:12px 20px;
-      border-radius:999px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#041109;
-      font-weight:bold;
-      text-decoration:none;
-      margin-top:20px;
+    .brand img {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 1px solid rgba(0,0,0,.08);
+      background: #fff;
     }
 
-    section{
-      margin-top:40px;
+    .brand-title {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.2;
     }
 
-    .card{
-      background:var(--card);
-      padding:20px;
-      border-radius:var(--radius);
-      border:1px solid var(--line);
-      margin-top:15px;
+    .brand-sub {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.2;
+      margin-top: 4px;
     }
 
-    iframe{
-      width:100%;
-      height:900px;
-      border:none;
-      background:white;
-      border-radius:var(--radius);
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
-    footer{
-      margin-top:60px;
-      padding:30px 0;
-      border-top:1px solid var(--line);
-      font-size:13px;
-      color:var(--sub);
+    nav a {
+      font-size: 14px;
+      color: #1d1d1d;
     }
 
-    @media(max-width:600px){
-      h1{font-size:24px;}
-      .brand img{width:60px;}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: .2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: white;
+      box-shadow: 0 12px 30px rgba(31, 122, 71, .18);
+    }
+
+    .btn-primary:hover { background: var(--green-dark); }
+
+    .btn-secondary {
+      background: white;
+      border-color: rgba(0,0,0,.1);
+    }
+
+    .hero {
+      padding: 56px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      margin: 0 0 20px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .hero-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .kpi {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: #fff;
+    }
+
+    .kpi strong {
+      display: block;
+      font-size: 26px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .kpi span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 640px;
+      object-fit: cover;
+      border-radius: 32px;
+    }
+
+    .floating-card {
+      position: absolute;
+      left: -20px;
+      bottom: 28px;
+      width: 280px;
+      background: rgba(255,255,255,.97);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.10);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+
+    .floating-card strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .floating-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 64px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+    }
+
+    .section-head p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .sponsor-area {
+      background: #fbfbfb;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .logo-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8a8f8c;
+      font-weight: 700;
+      background: white;
+    }
+
+    .news-grid,
+    .about-grid,
+    .activity-grid,
+    .team-grid,
+    .faq-grid,
+    .contact-grid,
+    .plan-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .news-grid { grid-template-columns: repeat(3, 1fr); }
+    .about-grid { grid-template-columns: .9fr 1.1fr; align-items: center; }
+    .activity-grid { grid-template-columns: repeat(3, 1fr); }
+    .team-grid { grid-template-columns: repeat(3, 1fr); }
+    .faq-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: .95fr 1.05fr; align-items: start; }
+    .plan-grid { grid-template-columns: 1.15fr 1fr 1fr; }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: white;
+      overflow: hidden;
+    }
+
+    .card-body {
+      padding: 22px;
+    }
+
+    .news-card .date {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .news-card h3,
+    .activity-card h3,
+    .team-card h3,
+    .plan-card h3,
+    .faq-item h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .news-card p,
+    .activity-card p,
+    .team-card p,
+    .plan-card p,
+    .faq-item p,
+    .about-copy p,
+    .contact-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .about-image img,
+    .wide-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 28px;
+    }
+
+    .about-image { min-height: 520px; }
+
+    .activity-card img,
+    .team-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .plan-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plan-card.featured {
+      border-color: rgba(31,122,71,.28);
+      box-shadow: 0 20px 50px rgba(31,122,71,.10);
+    }
+
+    .tag {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: var(--green);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .price {
+      font-size: 34px;
+      font-weight: 900;
+      margin: 8px 0 16px;
+      letter-spacing: -.03em;
+    }
+
+    .plan-list,
+    .bullet-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .plan-list li,
+    .bullet-list li { margin: 8px 0; }
+
+    .faq-item {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      background: #fff;
+    }
+
+    .faq-item .q {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .contact-box {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px;
+      background: #fff;
+    }
+
+    iframe {
+      width: 100%;
+      min-height: 940px;
+      border: 0;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px var(--line);
+    }
+
+    footer {
+      padding: 24px 0 44px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .plan-grid,
+      .news-grid,
+      .activity-grid,
+      .team-grid,
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual img { height: 460px; }
+      .floating-card {
+        left: 18px;
+        right: 18px;
+        width: auto;
+        bottom: 18px;
+      }
+      .logo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      nav { display: none; }
+      .hero { padding-top: 34px; }
+      .hero-kpis { grid-template-columns: 1fr; }
+      .logo-grid { grid-template-columns: 1fr; }
+      .brand-title { font-size: 13px; }
+      .hero p { font-size: 15px; }
+      .activity-card img, .team-card img { height: 210px; }
+      iframe { min-height: 820px; }
     }
   </style>
 </head>
-
 <body>
-
-<header>
-  <div class="wrap brand">
-    <img src="images/logo.jpg" alt="目白アルパインクラブ ロゴ">
-    <div>
-      <strong>目白アルパインクラブ</strong><br>
-      社会貢献プロジェクト「歩くゴミ箱」
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">
+        <img src="images/logo.jpg" alt="目白アルパインクラブ ロゴ">
+        <div>
+          <div class="brand-title">目白アルパインクラブ</div>
+          <div class="brand-sub">歩くゴミ箱 | 第1期協賛企業募集</div>
+        </div>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#about">私たちについて</a></li>
+          <li><a href="#activities">活動内容</a></li>
+          <li><a href="#news">ニュース</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+          <li><a class="btn btn-primary" href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
-</header>
+  </header>
 
-<div class="wrap">
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">2026年3月始動 | 初期パートナー募集中</div>
+          <h1>山をきれいに。<br>子どもにごはんを。</h1>
+          <p>
+            目白アルパインクラブは、登山を通じて社会課題の解決に取り組む学生団体です。<br>
+            新プロジェクト「歩くゴミ箱」では、山の美化活動と子ども支援をつなぎ、
+            協賛企業様とともに持続可能な社会貢献の仕組みをつくります。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">協賛の相談をする</a>
+            <a class="btn btn-secondary" href="#plans">協賛プランを見る</a>
+          </div>
+          <div class="hero-kpis">
+            <div class="kpi">
+              <strong>月2回</strong>
+              <span>有名登山地で活動予定</span>
+            </div>
+            <div class="kpi">
+              <strong>24回/年</strong>
+              <span>継続的な活動を想定</span>
+            </div>
+            <div class="kpi">
+              <strong>寄付</strong>
+              <span>経費を除き子ども支援へ</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80" alt="緑の山道を歩く登山者たち">
+          <div class="floating-card">
+            <strong>第1期パートナー企業募集</strong>
+            <p>立ち上げ期だからこそ、一緒に育てる意味がある。創設パートナーとして参画いただける企業様を募集しています。</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<h1>山をきれいに。子どもにごはんを。<br>背中で、企業の想いを届けます。</h1>
+    <section class="sponsor-area">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>第1期パートナー企業募集中</h2>
+            <p>このエリアには、今後ご協賛いただく企業様のロゴを掲載予定です。初期パートナーとして、プロジェクトの立ち上げを共に支えてくださる企業様を募集しています。</p>
+          </div>
+        </div>
+        <div class="logo-grid">
+          <div class="logo-box">YOUR LOGO HERE</div>
+          <div class="logo-box">YOUR LOGO HERE</div>
+          <div class="logo-box">YOUR LOGO HERE</div>
+          <div class="logo-box">YOUR LOGO HERE</div>
+        </div>
+      </div>
+    </section>
 
-<a href="#contact" class="cta">協賛の相談をする</a>
+    <section id="news">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>最新ニュース</h2>
+            <p>活動の開始情報、SNS開設、協賛募集開始などを随時更新していきます。</p>
+          </div>
+          <a class="btn btn-secondary" href="#contact">お問い合わせへ</a>
+        </div>
+        <div class="news-grid">
+          <article class="card news-card">
+            <div class="card-body">
+              <div class="date">03.2026</div>
+              <h3>「歩くゴミ箱」プロジェクトを始動予定</h3>
+              <p>2026年3月より、目白アルパインクラブの新たな社会貢献プロジェクトとして始動予定です。月2回、有名登山地を中心に活動します。</p>
+            </div>
+          </article>
+          <article class="card news-card">
+            <div class="card-body">
+              <div class="date">03.2026</div>
+              <h3>第1期協賛企業様の募集を開始</h3>
+              <p>創設パートナー、サポートパートナー、応援パートナーの3つのプランをご用意し、企業様の目的に応じて柔軟にご相談を承ります。</p>
+            </div>
+          </article>
+          <article class="card news-card">
+            <div class="card-body">
+              <div class="date">03.2026</div>
+              <h3>Instagram / TikTokを順次開設予定</h3>
+              <p>活動の様子や清掃成果、協賛企業様のロゴ掲示の様子を発信するため、各種SNSアカウントを順次整備予定です。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<section>
-<h2>プロジェクト概要</h2>
-<div class="card">
-私たちはゴミ箱を背負って登山を行い、山道に落ちているゴミを回収します。<br>
-協賛企業様のロゴを背面に掲示し、活動記録をSNS（Instagram / TikTok）で発信します。<br>
-協賛金は経費を除き、子ども食堂等へ寄付いたします。
-</div>
-</section>
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <div class="section-head" style="margin-bottom: 14px;">
+            <div>
+              <h2>私たちについて</h2>
+              <p>登山を楽しむだけで終わらず、次世代につながる価値をつくる。</p>
+            </div>
+          </div>
+          <p>
+            目白アルパインクラブは、単なる登山サークルにとどまらず、活動を通じて社会課題の解決に貢献することを目指しています。
+            私たちは、自分たちが学生生活を謳歌するだけでなく、次世代を担う子どもたちへより良い社会をつなぐ「架け橋」でありたいと考えています。
+          </p>
+          <p style="margin-top: 18px;">
+            富士山や高尾山など人気の山々では、観光客の増加に伴うゴミ問題が深刻化しています。一方で、地域社会には十分な食事や居場所を必要としている子どもたちがいます。
+            私たちは、この2つの課題を「登山の力」で結びつけたいと考えました。
+          </p>
+          <div style="margin-top: 24px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="#activities">活動内容を見る</a>
+            <a class="btn btn-secondary" href="#plans">協賛プランへ</a>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="自然の中に立つ森林風景">
+        </div>
+      </div>
+    </section>
 
-<section>
-<h2>協賛プラン</h2>
-<div class="card">
-<b>創設パートナー（限定3社）｜5万円〜</b><br>
-背面ロゴ最大掲示・サイト上部掲載・3ヶ月継続掲示・寄付報告明記
-</div>
+    <section id="activities">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>活動内容</h2>
+            <p>「山の美化」「企業協賛の可視化」「子ども支援への寄付」を1つの循環として設計しています。</p>
+          </div>
+        </div>
+        <div class="activity-grid">
+          <article class="card activity-card">
+            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=80" alt="山道を歩く登山者">
+            <div class="card-body">
+              <h3>山の美化活動</h3>
+              <p>ゴミ箱を背負って登山を行い、山道に落ちているゴミを回収します。有名登山地を中心に、月2回の継続活動を予定しています。</p>
+            </div>
+          </article>
+          <article class="card activity-card">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80" alt="企業ミーティングのイメージ">
+            <div class="card-body">
+              <h3>協賛企業様の可視化</h3>
+              <p>背負ったゴミ箱の背面に協賛企業様のロゴ・メッセージを掲示し、活動後はSNSやレポートを通じて取り組みを発信します。</p>
+            </div>
+          </article>
+          <article class="card activity-card">
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80" alt="子どもたちが集う食卓のイメージ">
+            <div class="card-body">
+              <h3>子ども支援への寄付</h3>
+              <p>協賛金は活動経費を除き、全額を子ども食堂等の社会奉仕活動へ寄付します。寄付先は協賛企業様と相談の上で決定します。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-<b>サポートパートナー｜3万円</b><br>
-背面ロゴ掲示・サイト掲載・活動報告共有
-</div>
+    <section>
+      <div class="wrap">
+        <div class="wide-image">
+          <img src="https://images.unsplash.com/photo-1464823063530-08f10ed1a2dd?auto=format&fit=crop&w=1600&q=80" alt="広がる山並みの風景" style="height: 420px;">
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-<b>応援パートナー｜1万円</b><br>
-ロゴ小掲示・活動報告共有
-</div>
-</section>
+    <section id="plans">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>協賛プラン</h2>
+            <p>企業様の目的に合わせて、掲示サイズ・掲載期間・発信内容を柔軟に調整できます。</p>
+          </div>
+        </div>
+        <div class="plan-grid">
+          <article class="card plan-card featured">
+            <span class="tag">限定3社</span>
+            <div class="card-body">
+              <h3>創設パートナー</h3>
+              <div class="price">5万円〜</div>
+              <ul class="plan-list">
+                <li>背面ロゴ最大掲示</li>
+                <li>サイト上部に創設パートナー掲載</li>
+                <li>月2回活動内での継続掲示</li>
+                <li>SNS投稿3回以上</li>
+                <li>寄付報告時に企業名掲載</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card plan-card">
+            <div class="card-body">
+              <h3>サポートパートナー</h3>
+              <div class="price">3万円</div>
+              <ul class="plan-list">
+                <li>背面ロゴ掲示</li>
+                <li>サイト掲載</li>
+                <li>SNS投稿2回</li>
+                <li>活動報告共有</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card plan-card">
+            <div class="card-body">
+              <h3>応援パートナー</h3>
+              <div class="price">1万円</div>
+              <ul class="plan-list">
+                <li>ロゴ小掲示</li>
+                <li>SNS投稿1回</li>
+                <li>活動報告共有</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<section id="contact">
-<h2>お問い合わせ</h2>
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>3つの価値</h2>
+            <p>単発の広告ではなく、社会課題への取り組みそのものを企業価値に変える設計です。</p>
+          </div>
+        </div>
+        <div class="team-grid">
+          <article class="card team-card">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="打ち合わせをする若者たち">
+            <div class="card-body">
+              <h3>信頼感</h3>
+              <p>白を基調とした企業向けの見せ方と、活動後の報告によって、安心して参画しやすい設計にしています。</p>
+            </div>
+          </article>
+          <article class="card team-card">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="チームで活動する学生たち">
+            <div class="card-body">
+              <h3>継続性</h3>
+              <p>月2回の活動を前提にしているため、単発ではなく継続的な関与としてプロジェクトを育てていくことができます。</p>
+            </div>
+          </article>
+          <article class="card team-card">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80" alt="PCを囲んで議論するメンバー">
+            <div class="card-body">
+              <h3>社会性</h3>
+              <p>山の美化と子ども支援をつなげることで、単なる露出にとどまらない、意味のある協賛機会を提供します。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexW4jgSRHGK_Gvz4ppsRODYqGJ9b1FyFqgVDzVpCxI2eBnNQ/viewform?embedded=true">
-読み込んでいます…
-</iframe>
+    <section id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>よくあるご質問</h2>
+            <p>企業様から想定されるご質問をまとめています。詳しいご相談はフォームよりお気軽にご連絡ください。</p>
+          </div>
+        </div>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="q">Q</div>
+            <h3>どのような企業が協賛できますか？</h3>
+            <p>業種を問わずご相談いただけます。特に、環境配慮、地域貢献、CSR、若年層向け発信に関心のある企業様と相性が良いと考えています。</p>
+          </div>
+          <div class="faq-item">
+            <div class="q">Q</div>
+            <h3>協賛金は何に使われますか？</h3>
+            <p>活動に必要な経費を除き、全額を子ども食堂等の社会奉仕活動へ寄付します。寄付先は企業様と相談の上で決定します。</p>
+          </div>
+          <div class="faq-item">
+            <div class="q">Q</div>
+            <h3>まだ実績がない段階でも参画する意味はありますか？</h3>
+            <p>はい。立ち上げ期だからこそ、創設パートナーとしてプロジェクトの方向性づくりから関わっていただける価値があります。</p>
+          </div>
+          <div class="faq-item">
+            <div class="q">Q</div>
+            <h3>活動報告は受け取れますか？</h3>
+            <p>はい。活動日、写真、回収量、寄付報告などをレポートとして共有予定です。掲載内容はプランに応じて調整します。</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</section>
+    <section id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-copy">
+          <div class="section-head" style="margin-bottom: 16px;">
+            <div>
+              <h2>お問い合わせ</h2>
+              <p>協賛プランのご相談、詳細資料のご希望、まずは話を聞いてみたいというご連絡も歓迎しています。</p>
+            </div>
+          </div>
+          <div class="contact-box">
+            <h3 style="margin-top:0; font-size: 22px;">ご相談いただきたい内容</h3>
+            <ul class="bullet-list">
+              <li>ご興味のあるプラン</li>
+              <li>掲示したいロゴやメッセージ</li>
+              <li>寄付先についてのご希望</li>
+              <li>オンライン面談の希望有無</li>
+            </ul>
+            <p style="margin-top:16px; color: var(--muted);">内容確認後、3営業日以内を目安にご返信いたします。</p>
+            <div style="margin-top: 18px; display:flex; gap:12px; flex-wrap:wrap;">
+              <a class="btn btn-primary" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+              <a class="btn btn-secondary" href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexW4jgSRHGK_Gvz4ppsRODYqGJ9b1FyFqgVDzVpCxI2eBnNQ/viewform?embedded=true" title="お問い合わせフォーム">読み込んでいます…</iframe>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<footer>
-目白アルパインクラブ © 2026<br>
-Instagram / TikTok は準備中
-</footer>
-
-</div>
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© 2026 目白アルパインクラブ</div>
+      <div>山の美化 × 子ども支援 × 企業協賛</div>
+    </div>
+  </footer>
 </body>
 </html>
+
